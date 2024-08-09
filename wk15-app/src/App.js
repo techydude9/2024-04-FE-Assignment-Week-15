@@ -2,6 +2,8 @@ import './App.css';
 import {useState, useEffect} from 'react'
 import '../node_modules/bootstrap/dist/css/bootstrap.css'
 
+
+
 //  MAIN APP Function
 function App() {
 
@@ -10,17 +12,17 @@ function App() {
 
   // define default product
   const [products, setProducts] = useState([{
-    name: 'Lava Lamp',
+    code: 'Lava Lamp',  // rename productName to ProductCode
     description: 'Multi color flowing Lava Lamp based on oringinal 70s design',
     price: '24.99'
   }]);
 
   //define useState variable and functions for adding and updating products
-  const [newProductName, setNewProductName] = useState('')
+  const [newProductCode, setNewProductCode] = useState('')
   const [newProductDescription, setNewProductDescription] = useState('')
   const [newProductPrice, setnewProductPrice] = useState('')
 
-  const [updatedProductName, setUpdatedProductName] = useState('')
+  const [updatedProductCode, setUpdatedProductCode] = useState('')
   const [updatedProductDescription, setUpdatedProductDescription] = useState('')
   const [updatedProductPrice, setUpdatedProductPrice] = useState('')
 
@@ -38,7 +40,7 @@ function App() {
   // useEffect state function
     useEffect(() => {
         getProducts()
-        console.log(products)}, []) 
+        }, []) 
     
   /* deleteUser function  Part 2 steps 1-3*/
   function deleteProduct(id){
@@ -51,13 +53,13 @@ function App() {
   function postNewProduct(e){
     e.preventDefault()
 
-  // console.log(newProductName, newProductDescription, newProductPrice)
+  // console.log(newProductCode, newProductDescription, newProductPrice)
 
     fetch(PRODUCTS_API_URL, {
       method: 'POST',
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify({
-          name: newProductName,
+          code: newProductCode,
           description: newProductDescription,
           price: newProductPrice,
         })
@@ -71,7 +73,7 @@ function App() {
 
     let updatedProductObject = {
       ...productObject, 
-      name: updatedProductName,
+      code: updatedProductCode,
       description: updatedProductDescription,
       price: updatedProductPrice,
     }
@@ -81,6 +83,9 @@ function App() {
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify(updatedProductObject)
     })
+    .then (setNewProductCode(''))
+    .then (setNewProductDescription(''))
+    .then (setnewProductPrice('')) 
     .then(() => getProducts())
   }
 
@@ -92,12 +97,12 @@ return (
   {/* HTML for adding new Products */}
   <div className="container">
     <div className="card">
-      <h3>Enter new Product Info</h3>
+      <h3>Enter New Product Info</h3>
       <form className="card-body bg-secondary">
         <div className="form-group">
-          <label htmlFor="inNewname">Product:</label>
-          <input className="form-control" type="text" placeholder='Product Name' 
-            onChange={(e) => setNewProductName(e.target.value)}></input>
+          <label htmlFor="inNewCode">Product Code:</label>
+          <input className="form-control" type="text" placeholder='Product Code' 
+            onChange={(e) => setNewProductCode(e.target.value)}></input>
           <label htmlFor="inNewDescription">Description:</label>
           <input className="form-control" type="text" placeholder='Description'
             onChange={(e) => setNewProductDescription(e.target.value)}></input>
@@ -117,18 +122,18 @@ return (
       <table className="table table-bordered table-hover">
         <thead>
           <tr className="col">
-            <th>Product Name</th>
+            <th>Product Code</th>
             <th>Description</th>
             <th>Price</th>
             <th>Delete</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className='border-success'>
           {products.map((product, index)=> {
               return ( 
               <>
               <tr key={index} className="mb-0">
-                <td>{product.name}</td>
+                <td>{product.code}</td>
                 <td>{product.description}</td>
                 <td>{product.price}</td>
                 <td>
@@ -139,7 +144,7 @@ return (
               </tr>
               <tr>
                 <td>
-                  <input placeholder='Update Product Name' onChange={(e) => setUpdatedProductName(e.target.value)}></input>
+                  <input placeholder='Update Product Code' onChange={(e) => setUpdatedProductCode(e.target.value)}></input>
                 </td>
                 <td>
                   <input placeholder='Update Description' onChange={(e) =>setUpdatedProductDescription(e.target.value)}></input>
@@ -151,6 +156,7 @@ return (
                   <button className="btn btn-primary btn-sm mb-3" onClick={(e) => updateProduct(e, product)}>Update</button>
                 </td>
               </tr>
+              <br></br>
              </>
                )
             })} 
