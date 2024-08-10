@@ -1,7 +1,7 @@
 import './App.css';
-import {useState, useEffect} from 'react'
-import '../node_modules/bootstrap/dist/css/bootstrap.css'
-
+import {useState, useEffect} from 'react';
+import '../node_modules/bootstrap/dist/css/bootstrap.css';
+import UpdateTheProduct from './Components/UpdateTheProduct.js';
 
 
 //  MAIN APP Function
@@ -22,9 +22,9 @@ function App() {
   const [newProductDescription, setNewProductDescription] = useState('')
   const [newProductPrice, setnewProductPrice] = useState('')
 
-  const [updatedProductCode, setUpdatedProductCode] = useState('')
-  const [updatedProductDescription, setUpdatedProductDescription] = useState('')
-  const [updatedProductPrice, setUpdatedProductPrice] = useState('')
+  // const [updatedProductCode, setUpdatedProductCode] = useState('')
+  // const [updatedProductDescription, setUpdatedProductDescription] = useState('')
+  // const [updatedProductPrice, setUpdatedProductPrice] = useState('')
 
 
   // function which will get products from API to display
@@ -67,7 +67,7 @@ function App() {
       .then(() => getProducts())
   }
 
-  /* updateProduct function */
+  /* updateProduct function MOVED TO COMPONENT
   function updateProduct(e, productObject){
     e.preventDefault()
 
@@ -88,6 +88,7 @@ function App() {
     .then (setnewProductPrice('')) 
     .then(() => getProducts())
   }
+    */
 
 // Displays the Products project
 return (
@@ -142,7 +143,8 @@ return (
                  </button>
                 </td>
               </tr>
-              <tr>
+                <UpdateTheProduct product={product} />
+          {/*  <tr>    
                 <td>
                   <input placeholder='Update Product Code' onChange={(e) => setUpdatedProductCode(e.target.value)}></input>
                 </td>
@@ -155,7 +157,7 @@ return (
                 <td>
                   <button className="btn btn-primary btn-sm mb-3" onClick={(e) => updateProduct(e, product)}>Update</button>
                 </td>
-              </tr>
+              </tr> */}
               <br></br>
              </>
                )
