@@ -10,8 +10,9 @@ function UpdateTheProduct (getProducts, productObject, PRODUCTS_API_URL) {
   const [updatedProductPrice, setUpdatedProductPrice] = useState('')
 
   console.log(PRODUCTS_API_URL);
+  console.log(getProducts);
 
-   function updateProduct(e, productObject){
+  function updateProduct(e, productObject){
     e.preventDefault()
     
     let product = {
@@ -21,13 +22,11 @@ function UpdateTheProduct (getProducts, productObject, PRODUCTS_API_URL) {
       price: updatedProductPrice,
     }
 
-    // console.log(product);
-
     fetch(`${PRODUCTS_API_URL}/${productObject.id}`, {
       method: 'PUT',
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify(product)
-    }).then(getProducts())
+    }) .then(() => getProducts())
     // .then (setUpdatedProductCode(''))
     // .then (setUpdatedProductDescription(''))
     // .then (setUpdatedProductPrice('')) 
