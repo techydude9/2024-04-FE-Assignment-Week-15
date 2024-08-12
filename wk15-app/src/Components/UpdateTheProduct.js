@@ -2,7 +2,7 @@ import '../App.css';
 import {useState} from 'react';
 import '../../node_modules/bootstrap/dist/css/bootstrap.css';
 
-function UpdateTheProduct ({productObject}, PRODUCTS_API_URL) {
+function UpdateTheProduct (getProducts, productObject, PRODUCTS_API_URL) {
 /* updateProduct function */
   //define useState variable and function for updating products
   const [updatedProductCode, setUpdatedProductCode] = useState('')
@@ -27,11 +27,11 @@ function UpdateTheProduct ({productObject}, PRODUCTS_API_URL) {
       method: 'PUT',
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify(product)
-    })
-    // .then (setNewProductCode(''))
-    // .then (setNewProductDescription(''))
-    // .then (setnewProductPrice('')) 
-    // .then(() => getProducts())
+    }).then(getProducts())
+    // .then (setUpdatedProductCode(''))
+    // .then (setUpdatedProductDescription(''))
+    // .then (setUpdatedProductPrice('')) 
+     
   } 
 
   return (

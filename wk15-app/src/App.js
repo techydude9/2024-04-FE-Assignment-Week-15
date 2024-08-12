@@ -143,22 +143,7 @@ return (
                  </button>
                 </td>
               </tr>
-                <UpdateTheProduct product={product} api={PRODUCTS_API_URL} />
-                <script>getProducts()</script>
-          {/*  <tr>    
-                <td>
-                  <input placeholder='Update Product Code' onChange={(e) => setUpdatedProductCode(e.target.value)}></input>
-                </td>
-                <td>
-                  <input placeholder='Update Description' onChange={(e) =>setUpdatedProductDescription(e.target.value)}></input>
-                </td>
-                <td>  
-                  <input placeholder='Update Price' onChange={(e) => setUpdatedProductPrice(e.target.value)}></input>
-                </td>
-                <td>
-                  <button className="btn btn-primary btn-sm mb-3" onClick={(e) => updateProduct(e, product)}>Update</button>
-                </td>
-              </tr> */}
+                <UpdateTheProduct getProducts={getProducts} productObject={product} PRODUCTS_API_URL={PRODUCTS_API_URL} />
               <br></br>
              </>
                )
