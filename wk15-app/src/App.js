@@ -143,7 +143,8 @@ return (
                  </button>
                 </td>
               </tr>
-                <UpdateTheProduct product={product} />
+                <UpdateTheProduct product={product} api={PRODUCTS_API_URL} />
+                <script>getProducts()</script>
           {/*  <tr>    
                 <td>
                   <input placeholder='Update Product Code' onChange={(e) => setUpdatedProductCode(e.target.value)}></input>
