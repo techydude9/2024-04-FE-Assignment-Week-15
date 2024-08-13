@@ -2,7 +2,7 @@ import '../App.css';
 import {useState} from 'react';
 import '../../node_modules/bootstrap/dist/css/bootstrap.css';
 
-function UpdateTheProduct (getProducts, productObject, PRODUCTS_API_URL) {
+function UpdateTheProduct ({getProducts, productObject, PRODUCTS_API_URL}) {
 /* updateProduct function */
   //define useState variable and function for updating products
   const [updatedProductCode, setUpdatedProductCode] = useState('')
